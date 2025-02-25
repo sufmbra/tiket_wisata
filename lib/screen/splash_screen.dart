@@ -1,38 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:tiket_wisata/constants/colors.dart';
-import 'package:tiket_wisata/gen/assets.gen.dart';
-import 'package:tiket_wisata/screen/home_screen.dart';
+import '../utils/constants.dart'; // Pastikan file constants.dart ada
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+class CustomText extends StatelessWidget {
+  final String text;
+  final double fontSize;
+  final FontWeight fontWeight;
+  final Color? color;
+  final TextAlign textAlign;
+  final int? maxLines;
+  final TextOverflow? overflow;
 
-  @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  @override
-  void initState() {
-    super.initState();
-    // Timer untuk pindah ke HomeScreen setelah 3 detik
-    Future.delayed(Duration(seconds: 3), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const HomeScreen()),
-      );
-    });
-  }
+  const CustomText({
+    Key? key,
+    required this.text,
+    this.fontSize = 16,
+    this.fontWeight = FontWeight.normal,
+    this.color,
+    this.textAlign = TextAlign.start,
+    this.maxLines, // Menambahkan maxLines untuk membatasi jumlah baris
+    this.overflow, // Menambahkan overflow agar teks tidak terpotong tanpa kontrol
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
-      body: Center(
-        child: Image.asset(
-          Assets.images.image1.path,
-          width: 150,
-          height: 150,
-        ),
+    return Text(
+      text,
+      textAlign: textAlign,
+      maxLines: maxLines, // Batasi jumlah baris (jika diperlukan)
+      overflow: overflow, // Tangani overflow (misal: TextOverflow.ellipsis)
+      style: TextStyle(
+        fontSize: fontSize,
+        fontWeight: fontWeight,
+        color: color ?? AppColors.textColor, // 🔹 Perbaikan: Menggunakan warna default dengan benar
       ),
     );
   }

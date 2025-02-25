@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:tiket_wisata/screen/splash_screen.dart';
-// import 'package:tiket_wisata/screen/splash_screen.dart';
+import 'components/splash_page.dart';
+import 'components/login_page.dart';
+import 'components/main_page.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: const SplashScreen(),
+      debugShowCheckedModeBanner: false,
+      initialRoute: '/splash',
+      routes: {
+        '/splash': (context) => const SplashPage(),
+        '/login': (context) => const LoginPage(),
+        '/main': (context) => const MainPage(),
+      },
     );
   }
 }
