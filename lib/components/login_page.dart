@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
-import '../components/custom_button.dart';
-import '../utils/navigator_extension.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: const Text("Login")),
       body: Center(
-        child: CustomButton(
-          text: 'Login',
+        child: ElevatedButton(
           onPressed: () {
-            context.pushReplacementNamed('/main'); // Implementasi navigator
+            Navigator.pushReplacementNamed(context, '/main');
           },
+          child: const Text("Login"),
         ),
       ),
     );

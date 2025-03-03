@@ -17,7 +17,8 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Main Page")),
+      appBar: AppBar(title: const Text("Main Page")),
+      body: const Center(child: Text("Welcome to the Main Page!")),
       bottomNavigationBar: BottomAppBar(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
