@@ -1,44 +1,41 @@
 import 'package:flutter/material.dart';
-import '../widgets/nav_item.dart';
+import '../pages/order_page.dart';
 import '../pages/dummy_page.dart';
 
-class MainPage extends StatelessWidget {
-  const MainPage({Key? key}) : super(key: key);
+class MainPage extends StatefulWidget {
+  const MainPage({super.key});
 
-  void navigateToDummyPage(BuildContext context, String title) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => DummyPage(title: title),
-      ),
-    );
+  @override
+  State<MainPage> createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+  int _selectedIndex = 0;
+  final List<Widget> _pages = [
+    const OrderPage(),
+    const DummyPage(title: 'Explore Page'),
+    const DummyPage(title: 'Profile Page'),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Main Page")),
-      bottomNavigationBar: BottomAppBar(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            NavItem(
-              icon: Icons.home,
-              label: "Home",
-              onTap: () => navigateToDummyPage(context, "Home Page"),
-            ),
-            NavItem(
-              icon: Icons.event,
-              label: "Tickets",
-              onTap: () => navigateToDummyPage(context, "Tickets Page"),
-            ),
-            NavItem(
-              icon: Icons.account_circle,
-              label: "Profile",
-              onTap: () => navigateToDummyPage(context, "Profile Page"),
-            ),
-          ],
-        ),
+      appBar: AppBar(title: const Text("Main Page")),
+      body: _pages[_selectedIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.explore), label: 'Explore'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+        ],
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
       ),
     );
   }
