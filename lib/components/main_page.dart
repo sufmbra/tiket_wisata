@@ -12,7 +12,7 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
   final List<Widget> _pages = [
-    const OrderPage(),
+    OrderPage(),
     const DummyPage(title: 'Explore Page'),
     const DummyPage(title: 'Profile Page'),
   ];
@@ -36,6 +36,12 @@ class _MainPageState extends State<MainPage> {
         ],
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushNamed(context, '/order'); // Navigasi ke Order Page
+        },
+        child: const Icon(Icons.shopping_cart),
       ),
     );
   }

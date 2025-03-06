@@ -1,5 +1,3 @@
-// models/product.dart
-
 class Product {
   final String name;
   final double price;
@@ -8,9 +6,8 @@ class Product {
   Product({required this.name, required this.price, required this.image});
 }
 
-// Dummy data
 List<Product> dummyProducts = [
-  Product(name: 'Tiket Pantai', price: 50000, image: 'assets/pantai.jpg'),
-  Product(name: 'Tiket Gunung', price: 75000, image: 'assets/gunung.jpg'),
-  Product(name: 'Tiket Museum', price: 30000, image: 'assets/museum.jpg'),
+  Product(name: "Tiket Wisata A", price: 50000, image: "assets/images/tiket_a.png"),
+  Product(name: "Tiket Wisata B", price: 75000, image: "assets/images/tiket_b.png"),
+  Product(name: "Tiket Wisata C", price: 100000, image: "assets/images/tiket_c.png"),
 ];
