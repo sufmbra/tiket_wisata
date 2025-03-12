@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../pages/order_page.dart';
+import '../pages/ticket_page.dart'; // Import halaman tiket
 import '../pages/dummy_page.dart';
+import '../pages/order_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -12,7 +13,7 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
   final List<Widget> _pages = [
-    OrderPage(),
+    const TicketPage(), // Home sekarang mengarah ke TicketPage
     const DummyPage(title: 'Explore Page'),
     const DummyPage(title: 'Profile Page'),
   ];
@@ -39,7 +40,10 @@ class _MainPageState extends State<MainPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context, '/order'); // Navigasi ke Order Page
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => OrderPage()),
+          );
         },
         child: const Icon(Icons.shopping_cart),
       ),
